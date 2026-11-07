@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
   // 결정론적 비밀번호로 업데이트 (학번 기반 자동 로그인용)
   const derivedPassword = `SK-${code}-${STUDENT_SALT}`
-  await admin.auth.admin.updateUser(profile.id, { password: derivedPassword })
+  await admin.auth.admin.updateUserById(profile.id, { password: derivedPassword })
 
   // 로그인 처리 (SSR 클라이언트가 자동으로 쿠키 설정)
   const supabase = await createClient()
